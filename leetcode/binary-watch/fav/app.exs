@@ -55,7 +55,7 @@ bench_variants = for _ <- 1..20_000, do: Enum.random(0..8)
 Benchee.run(
   %{
     "less variants" => fn -> Enum.map(bench_variants, &Solution.read_binary_watch/1) end,
-    "full brute" => fn -> Enum.map(bench_variants, &Solution.read_binary_watch/1) end
+    "full brute" => fn -> Enum.map(bench_variants, &Solution.read_binary_watch2/1) end
   },
   time: 10,
   memory_time: 2
