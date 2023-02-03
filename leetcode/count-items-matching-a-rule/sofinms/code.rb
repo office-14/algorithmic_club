@@ -1,21 +1,18 @@
-# @param {Integer[]} nums
-# @return {Integer[][]}
-def find_subsequences(nums)
-    result_arr = find_subarray(nums[0], nums[1..-1])
-    result_arr.select{|e| e.count > 1}.uniq
-end
-
-def find_subarray(current_el, other_arr)
-    result = []
-    result.push([current_el])
-    if other_arr.count > 0
-        next_result = find_subarray(other_arr[0], other_arr[1..-1])
-        result += next_result
-        next_result.each do |_result|
-            if _result[0] >= current_el
-                result.push([current_el] + _result)
-            end
+# @param {String[][]} items
+# @param {String} rule_key
+# @param {String} rule_value
+# @return {Integer}
+def count_matches(items, rule_key, rule_value)
+    counter = 0
+    types = {
+        'type' => 0,
+        'color' => 1,
+        'name' => 2
+    }
+    items.each do |item|
+        if types[rule_key] && item[types[rule_key]] == rule_value
+            counter += 1
         end
     end
-    result
+    counter
 end
